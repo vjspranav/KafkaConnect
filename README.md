@@ -24,7 +24,7 @@ curl -X POST http://localhost:8083/connectors -H 'Content-Type: application/json
   "config": {
     "connector.class": "io.confluent.connect.elasticsearch.ElasticsearchSinkConnector",
     "tasks.max": "1",
-    "topics": "example-topic",
+    "topics": "test",
     "key.ignore": "true",
     "schema.ignore": "true",
     "connection.url": "http://elastic:9200",
@@ -36,7 +36,7 @@ curl -X POST http://localhost:8083/connectors -H 'Content-Type: application/json
 }'
 ```
 
-## Postgres Sink [WIP]
+## Postgres Sink
 ```
 curl -X POST http://localhost:8083/connectors -H 'Content-Type: application/json' -d \
 '{
@@ -44,21 +44,19 @@ curl -X POST http://localhost:8083/connectors -H 'Content-Type: application/json
     "config": {
         "connector.class": "io.confluent.connect.jdbc.JdbcSinkConnector",
         "tasks.max": 1,
-        "topics": "test1",
+        "topics": "test",
         "connection.url": "jdbc:postgresql://pg-0:5432/meroxadb",
         "connection.user": "meroxauser",
         "connection.password": "meroxapass",
         "auto.create": true,
-        "insert.mode": "upsert",
-        "pk.mode": "none",
+        "insert.mode": "insert",
         "value.converter": "org.apache.kafka.connect.json.JsonConverter",
-        "value.converter.schemas.enable": "false"
+        "schemas.enable": false, 
+        "pk.mode": "none"
     }
 }'
 ```
 
-
 ### Example producer
 ```
-{"schema": {"type": "struct", "fields": [{"field": "name", "type": "string", "optional": false}]}, "data" : {"name": "test"}}
-```
+{"schema": {"type": "struct", "fields": [{"field": "user", "type": "string", "optional": false}]}, "payload" : {"user": "test"}}
