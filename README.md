@@ -7,7 +7,7 @@ Postgres is still a work in progress.
 - Docker
 - Docker Compose
 
-Download the following plugins and place them in connect-plugins folder
+Download the following plugins and place them in the connect-plugins folder
 - [Kafka Connector](https://www.confluent.io/hub/confluentinc/kafka-connect-jdbc)
 - [Elasticsearch Connector](https://www.confluent.io/hub/confluentinc/kafka-connect-elasticsearch)
 
